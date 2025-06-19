@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatos e Contas</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      /* ESTILO GERAL COM BACKGROUND */
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        background-color: #f9fafb;
+        background-image: url("https://gife.org.br/wp/media/2023/06/cenario_cultura_de_doacao_brasil-scaled.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* CONTAINER PRINCIPAL */
+      .main-container {
+        flex: 1;
+        background-color: rgba(255, 255, 255, 0.85);
+        margin-top: 70px;
+      }
+
+      /* NAVBAR STYLES */
+      .navbar {
+        background-color: #f97316; /* Cor laranja */
+        color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .navbar:hover {
+        background-color: #e05e0b; /* Laranja mais escuro no hover */
+      }
+
+      .user-profile-container {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+      }
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .profile-img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-image: url("https://avatars.githubusercontent.com/u/172922544?v=4");
+        background-size: cover;
+        background-position: center;
+        background-color: white;
+      }
+
+      .username {
+        font-weight: 600;
+        color: white;
+      }
+
+      /* BOTÃO DE SAIR - AJUSTADO */
+      .logout-btn {
+        background-color: white;
+        color: #f97316;
+        border: 2px solid white;
+        border-radius: 8px;
+        padding: 0.5rem 1.25rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-left: auto;
+        margin-right: 1rem;
+      }
+
+      .logout-btn:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #f97316;
+      }
+
+      /* BOTÃO DE VOLTAR */
+      .back-btn-nav {
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-right: 1rem;
+        display: none;
+        transition: all 0.3s ease;
+      }
+
+      .back-btn-nav:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      /* CONTEÚDO PRINCIPAL */
+      .title-island {
+        background-color: white;
+        max-width: 500px;
+        margin: 2rem auto;
+        padding: 1rem 2rem;
+        border-radius: 2rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .title-island h1 {
+        margin: 0;
+        font-size: 2rem;
+        color: #f97316;
+        font-weight: 700;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto 2rem;
+        padding: 0 1rem;
+      }
+
+      .card {
+        background-color: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .card-description {
+        background-color: #f97316;
+        color: white;
+        font-weight: 600;
+        text-align: center;
+        padding: 0.75rem;
+      }
+
+      .relato-form {
+        background-color: white;
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .relato-form h2 {
+        color: #f97316;
+        margin-top: 0;
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #4b5563;
+      }
+
+      .form-group textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        font-family: "Inter", sans-serif;
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #f97316;
+        box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+      }
+
+      .submit-btn {
+        background-color: #f97316;
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.2s;
+      }
+
+      .submit-btn:hover {
+        background-color: #ea580c;
+      }
+
+      .relato-page {
+        display: none;
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 1rem;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .relato-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .relato-user-img {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .relato-user-info h2 {
+        margin: 0;
+        color: #f97316;
+      }
+
+      .relato-user-info p {
+        margin: 0.25rem 0 0;
+        color: #6b7280;
+      }
+
+      .relato-content {
+        margin-top: 2rem;
+      }
+
+      .relato-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .back-btn {
+        background-color: #f97316;
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 2rem;
+        transition: background-color 0.2s;
+      }
+
+      .back-btn:hover {
+        background-color: #ea580c;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      /* FOOTER - ESTILO LARANJA */
+      .site-footer {
+        background-color: #f97316; /* Cor laranja */
+        color: white;
+        padding: 3rem 0;
+        font-family: "Inter", sans-serif;
+        margin-top: auto;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .footer-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-column h3 {
+        color: white;
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 0.5rem;
+      }
+
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-column li {
+        margin-bottom: 0.8rem;
+      }
+
+      .footer-column a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-column a:hover {
+        color: white;
+        text-decoration: underline;
+      }
+
+      .footer-social {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .social-icon {
+        color: #f97316;
+        background-color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+
+      .social-icon:hover {
+        background-color: #f8f8f8;
+        transform: translateY(-3px);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .footer-links {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-social {
+          margin: 1.5rem 0;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .relato-form,
+        .relato-page {
+          margin: 2rem 1rem;
+          padding: 1.5rem;
+        }
+
+        .relato-header {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .navbar {
+          padding: 0.75rem 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <div class="navbar">
+      <div class="user-profile-container">
+        <button class="back-btn-nav" id="backBtnNav" onclick="showMainPage()">
+          ← Voltar
+        </button>
+        <div class="user-profile">
+          <div class="profile-img"></div>
+          <div class="username">Maria Clara Maciel Muniz</div>
+        </div>
+      </div>
+      <button class="logout-btn" onclick="logout()">Sair</button>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="main-container">
+      <!-- PÁGINA PRINCIPAL -->
+      <div id="main-page">
+        <!-- TÍTULO COM EFEITO ILHA -->
+        <div class="title-island">
+          <h1>Relatos e Contas</h1>
+        </div>
+
+        <!-- GRID DE RELATOS -->
+        <div class="grid" id="cards-container"></div>
+
+        <!-- FORMULÁRIO DE RELATO -->
+        <div class="relato-form">
+          <h2>Deixe seu relato</h2>
+          <form id="formRelato">
+            <div class="form-group">
+              <label for="relato">Compartilhe sua experiência:</label>
+              <textarea
+                id="relato"
+                name="relato"
+                placeholder="Conte como foi sua experiência com doações ou ações sociais..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Enviar Relato</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- PÁGINAS DE RELATO INDIVIDUAL -->
+      <div id="relato-pages-container">
+        <!-- As páginas serão geradas dinamicamente pelo JavaScript -->
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-links">
+          <div class="footer-column">
+            <h3>Sobre Nós</h3>
+            <ul>
+              <li><a href="#">Nossa Missão</a></li>
+              <li><a href="#">Equipe</a></li>
+              <li><a href="#">Parceiros</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Ajuda</h3>
+            <ul>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Contato</a></li>
+              <li><a href="#">Guia de Uso</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Legal</h3>
+            <ul>
+              <li><a href="#">Termos de Serviço</a></li>
+              <li><a href="#">Política de Privacidade</a></li>
+              <li><a href="#">Cookies</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-social">
+          <a href="#" class="social-icon" aria-label="Facebook"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" class="social-icon" aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" class="social-icon" aria-label="Twitter"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="#" class="social-icon" aria-label="LinkedIn"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2023 Relatos e Contas. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Dados dos relatos
+      const relatos = [
+        {
+          id: 1,
+          nome: "Ana Silva",
+          data: "15/05/2023",
+          imagemPerfil: "https://randomuser.me/api/portraits/women/44.jpg",
+          imagemRelato:
+            "https://dentistaubatuba.com.br/wp-content/uploads/2021/06/o-que-as-pessoas-bonitas-tem-em-comum-2.jpg",
+          titulo: "Doação de alimentos",
+          descricao:
+            "Realizei uma doação de alimentos para a comunidade local. Foi uma experiência incrível ver o sorriso no rosto das pessoas que receberam.",
+          conteudo:
+            "Hoje realizei a entrega de 50 cestas básicas para famílias carentes da região. A ação foi organizada em parceria com a igreja local e contou com a ajuda de vários voluntários. Cada cesta continha arroz, feijão, óleo, açúcar, café, macarrão, farinha de trigo, leite em pó, sardinha e biscoito. Ver a gratidão no olhar de cada pessoa me fez perceber o quanto pequenas ações podem fazer a diferença na vida de quem precisa.",
+        },
+        {
+          id: 2,
+          nome: "Carlos Oliveira",
+          data: "22/06/2023",
+          imagemPerfil: "https://randomuser.me/api/portraits/men/32.jpg",
+          imagemRelato:
+            "https://s2-g1.glbimg.com/HPOdNH66If5voAEkfgxP-KY94io=/0x0:3000x1687/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2021/j/q/3K8F7yTBCbol99DNk5Cg/entrega-kits-alimentos-curitiba-2.jpeg",
+          titulo: "Entrega de kits de higiene",
+          descricao:
+            "Organizamos a entrega de kits de higiene para moradores de rua.",
+          conteudo:
+            "Em parceria com a ONG 'Ajuda Solidária', conseguimos arrecadar e distribuir 120 kits de higiene pessoal para moradores em situação de rua. Cada kit continha escova de dentes, pasta dental, sabonete, shampoo, absorventes higiênicos, desodorante e toalha. Além da distribuição, oferecemos orientações sobre cuidados básicos de saúde e higiene. Foi emocionante ver o quanto esse gesto simples pode restaurar a dignidade de tantas pessoas.",
+        },
+        {
+          id: 3,
+          nome: "Mariana Costa",
+          data: "10/07/2023",
+          imagemPerfil: "https://randomuser.me/api/portraits/women/68.jpg",
+          imagemRelato:
+            "https://www.aleam.gov.br/wp-content/uploads/2023/08/11-Assembleia-Legislativa-do-Amazonas-entrega-produtos-de-higiene-para-iniciativa-solida%CC%81ria-Ma%CC%83os-Dadas-.jpeg",
+          titulo: "Campanha do agasalho",
+          descricao: "Participei da campanha do agasalho deste ano.",
+          conteudo:
+            "Durante o inverno, organizei com amigos uma campanha para arrecadar agasalhos e cobertores. Conseguimos juntar mais de 200 peças entre casacos, blusas, calças e cobertores. A distribuição foi feita em um abrigo municipal que acolhe famílias em situação de vulnerabilidade. O que mais me marcou foi conhecer a história da Dona Maria, uma senhora de 72 anos que havia perdido tudo em um incêndio e estava vivendo no abrigo com sua neta de 8 anos. Conseguimos encontrar roupas adequadas para ambas e ainda arrecadar materiais escolares para a menina.",
+        },
+        {
+          id: 4,
+          nome: "João Santos",
+          data: "05/08/2023",
+          imagemPerfil: "https://randomuser.me/api/portraits/men/75.jpg",
+          imagemRelato:
+            "https://img.freepik.com/fotos-premium/homem-idoso-feliz_256588-850.jpg",
+          titulo: "Doação de brinquedos",
+          descricao: "Realizei doação de brinquedos para o natal solidário.",
+          conteudo:
+            "No último natal, decidi que em vez de presentear meus sobrinhos com brinquedos novos, iria ensiná-los sobre solidariedade. Juntos, selecionamos brinquedos em bom estado que eles não usavam mais e compramos alguns novos para complementar. Visitamos um orfanato e distribuímos os presentes pessoalmente. A alegria das crianças foi contagiante! Meus sobrinhos ficaram tão tocados pela experiência que agora querem fazer isso todo ano. Criamos até uma tradição familiar em torno da doação.",
+        },
+        {
+          id: 5,
+          nome: "Fernanda Lima",
+          data: "18/09/2023",
+          imagemPerfil: "https://randomuser.me/api/portraits/women/33.jpg",
+          imagemRelato:
+            "https://psicoespaco.com.br/images/meta/f6704200-68f8-4b8f-8d46-161888a45602/aaddd51a-6d9d-48f5-93ba-86ad45f00bf7/110.jpg",
+          titulo: "Voluntariado no asilo",
+          descricao: "Faço trabalho voluntário no asilo da cidade.",
+          conteudo:
+            "Há seis meses comecei a visitar semanalmente o asilo São Vicente. Minha atividade principal é simplesmente conversar com os idosos, ouvir suas histórias e fazer companhia. Com o tempo, comecei a organizar pequenas atividades como leituras coletivas, sessões de música e até aulas simples de alongamento. O que começou como uma obrigação social tornou-se uma das partes mais ricas da minha semana. A Dona Elisa, de 89 anos, tornou-se como uma avó para mim, e suas histórias de vida são verdadeiras aulas de sabedoria e resiliência.",
+        },
+        {
+          id: 6,
+          nome: "Ricardo Almeida",
+          data: "30/10/2023",
+          imagemPerfil: "https://randomuser.me/api/portraits/men/85.jpg",
+          imagemRelato:
+            "https://d1muf25xaso8hp.cloudfront.net/https://img.criativodahora.com.br/2024/05/criativo-6647acac7ef4dimg-2024-05-176647acac7ef50.jpg",
+          titulo: "Doação de sangue",
+          descricao: "Participei da campanha de doação de sangue.",
+          conteudo:
+            "Sempre tive medo de agulhas, mas depois de saber sobre a baixa nos estoques de sangue no hemocentro local, decidi enfrentar meu medo. Fui acompanhado por um amigo que já é doador regular e a equipe foi extremamente atenciosa. Descobri que o processo é muito mais simples e rápido do que imaginava, e a sensação de saber que meu sangue pode salvar vidas é indescritível. Me tornei um doador frequente e já convenci vários amigos a fazerem o mesmo. Uma única doação pode ajudar até quatro pessoas!",
+        },
+      ];
+
+      // Elementos do DOM
+      const mainPage = document.getElementById("main-page");
+      const cardsContainer = document.getElementById("cards-container");
+      const relatoPagesContainer = document.getElementById(
+        "relato-pages-container"
+      );
+      const formRelato = document.getElementById("formRelato");
+      const backBtnNav = document.getElementById("backBtnNav");
+
+      // Função para logout
+      function logout() {
+        alert("Você será deslogado.");
+        // window.location.href = "login.html";
+      }
+
+      // Função para mostrar a página principal
+      function showMainPage() {
+        mainPage.style.display = "block";
+        relatoPagesContainer.style.display = "none";
+        backBtnNav.style.display = "none";
+        window.scrollTo(0, 0);
+      }
+
+      // Função para mostrar um relato específico
+      function showRelatoPage(relatoId) {
+        mainPage.style.display = "none";
+        relatoPagesContainer.style.display = "block";
+        backBtnNav.style.display = "block";
+
+        // Esconder todas as páginas de relato
+        document.querySelectorAll(".relato-page").forEach((page) => {
+          page.style.display = "none";
+        });
+
+        // Mostrar apenas a página do relato selecionado
+        const relatoPage = document.getElementById(`relato-page-${relatoId}`);
+        if (relatoPage) {
+          relatoPage.style.display = "block";
+          window.scrollTo(0, 0);
+        }
+      }
+
+      // Função para criar as páginas de relato individual
+      function createRelatoPages() {
+        relatos.forEach((relato) => {
+          const relatoPage = document.createElement("div");
+          relatoPage.className = "relato-page";
+          relatoPage.id = `relato-page-${relato.id}`;
+          relatoPage.style.display = "none";
+
+          relatoPage.innerHTML = `
+        <div class="relato-header">
+          <div class="relato-user-img" style="background-image: url('${relato.imagemPerfil}')"></div>
+          <div class="relato-user-info">
+            <h2>${relato.nome}</h2>
+            <p>${relato.data}</p>
+          </div>
+        </div>
+        
+        <h2>${relato.titulo}</h2>
+        
+        <div class="relato-content">
+          <img src="${relato.imagemRelato}" alt="${relato.titulo}" class="relato-image">
+          <p>${relato.conteudo}</p>
+        </div>
+        
+        <button class="back-btn" onclick="showMainPage()">Voltar</button>
+      `;
+
+          relatoPagesContainer.appendChild(relatoPage);
+        });
+      }
+
+      // Função para criar os cards na página principal
+      function createCards() {
+        relatos.forEach((relato) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+        <img src="${relato.imagemRelato}" alt="${relato.titulo}" />
+        <div class="card-description">${relato.descricao}</div>
+      `;
+
+          // Adicionar evento de clique ao card
+          card.addEventListener("click", () => showRelatoPage(relato.id));
+
+          cardsContainer.appendChild(card);
+        });
+      }
+
+      // Manipular envio do formulário
+      formRelato.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const relatoText = document.getElementById("relato").value;
+
+        alert("Relato enviado com sucesso!\n\n" + relatoText);
+        document.getElementById("relato").value = "";
+      });
+
+      // Inicializar a página
+      document.addEventListener("DOMContentLoaded", function () {
+        createRelatoPages();
+        createCards();
+      });
+    </script>
+  </body>
+</html>

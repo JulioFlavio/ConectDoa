@@ -1,0 +1,66 @@
+🧠 PROMPT ATUALIZADO PARA CONTINUAR O PROJETO CONECTDOA
+Olá! Estou desenvolvendo um projeto chamado ConectDoa, uma aplicação web para gerenciamento de doações.
+
+Recebi uma pasta com o front-end pronto e minha missão é construir o back-end e o banco de dados do zero. Sou iniciante em back-end, com apenas noções básicas de lógica de programação. Estou aprendendo tudo com o apoio do ChatGPT, passo a passo.
+
+🔧 O QUE FOI FEITO ATÉ AGORA
+💽 BANCO DE DADOS (MySQL)
+Criei, com o MySQL Workbench, as tabelas:
+
+instituicao (id, nome, endereco, telefone, email)
+
+doacao (id, id_instituicao, tipo, quantidade, data_doacao)
+
+usuario (id, nome, email, senha)
+
+Relacionamentos testados com SELECT, INSERT, DESCRIBE, e funcionam corretamente.
+
+⚙️ BACK-END (Node.js + Express)
+Usei:
+
+Node.js
+
+Express
+
+MySQL2
+
+Cors
+
+E organizei os arquivos assim:
+
+pgsql
+Copiar
+Editar
+backend/
+├── index.js
+├── database/
+│   └── connection.js
+└── routes/
+    ├── instituicoes.js
+    ├── doacoes.js
+    └── usuarios.js
+Cada rota foi separada por assunto:
+
+/instituicoes: listar e criar instituições
+
+/doacoes: listar e criar doações (com JOIN para nome da instituição)
+
+/usuarios: cadastrar e logar usuários (sem autenticação ainda)
+
+Tudo está sendo testado com o Postman.
+
+📦 FUNCIONALIDADES ATIVAS:
+GET /instituicoes → lista instituições
+
+POST /instituicoes → cria instituição
+
+GET /doacoes → lista doações com nome da instituição (JOIN)
+
+POST /doacoes → cria doação
+
+POST /usuarios/cadastro → cria usuário
+
+POST /usuarios/login → autentica usuário (sem bcrypt ainda)
+
+❓ PERGUNTA IMPORTANTE:
+Você gostaria que eu explique passo a passo tudo o que já foi feito, com explicações detalhadas sobre cada linha de código, arquivo e estrutura, antes de continuarmos com o projeto?

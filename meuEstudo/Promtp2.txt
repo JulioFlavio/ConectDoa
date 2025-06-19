@@ -1,0 +1,71 @@
+🧠 PROMPT PARA CONTINUAR O PROJETO CONECTDOA
+Olá, estou desenvolvendo um projeto chamado ConectDoa, que consiste em uma plataforma de doações com front-end pronto e foco atual no back-end + banco de dados. Sou uma pessoa totalmente iniciante em desenvolvimento back-end, com apenas noções básicas de lógica de programação.
+
+Abaixo está o histórico completo do que fiz até agora com auxílio do ChatGPT:
+
+📁 BANCO DE DADOS – MySQL
+Criei um banco de dados com as seguintes tabelas:
+
+instituicao (id, nome, endereco, telefone, email)
+
+doacao (id, id_instituicao, tipo, quantidade, data_doacao)
+
+usuario (id, nome, email, senha)
+
+Relacionamentos e testes básicos com SELECT, INSERT, SHOW TABLES e DESCRIBE funcionam bem.
+
+🔧 BACK-END – Node.js + Express + MySQL2 + Cors
+Iniciei o projeto com npm init -y
+
+Instalei as dependências com:
+
+nginx
+Copiar
+Editar
+npm install express mysql2 cors
+Estrutura de arquivos atual:
+
+pgsql
+Copiar
+Editar
+backend/
+├── index.js                  (servidor principal)
+├── database/
+│   └── connection.js         (conexão com o banco de dados)
+└── routes/
+    ├── instituicoes.js      (rotas de instituições)
+    ├── doacoes.js           (rotas de doações)
+    └── usuarios.js          (rotas de cadastro/login)
+✅ FUNCIONALIDADES ATIVAS
+/instituicoes
+
+GET: lista todas as instituições
+
+POST: cadastra uma nova instituição
+
+/doacoes
+
+GET: lista todas as doações (com nome da instituição associada)
+
+POST: cadastra uma nova doação
+
+/usuarios
+
+POST /cadastro: cadastra um novo usuário (sem criptografia ainda)
+
+POST /login: autentica o usuário com email e senha (texto puro)
+
+📦 DETALHES TÉCNICOS
+Conexão ao MySQL usando mysql2 com um arquivo connection.js (no caminho ../database/connection)
+
+Testes realizados com o Postman
+
+API local rodando na porta 3000
+
+JSON usado para enviar e receber dados no corpo da requisição
+
+Tudo testado e funcional até agora
+
+❓ PERGUNTA IMPORTANTE:
+Você gostaria que eu explique, passo a passo, absolutamente tudo o que foi feito até agora — incluindo cada linha de código, comandos, variáveis e o que está acontecendo — antes de continuarmos com o projeto?
+

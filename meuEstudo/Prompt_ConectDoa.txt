@@ -1,0 +1,31 @@
+
+🧠 Prompt para continuar o projeto do ConectDoa:
+
+Estou desenvolvendo um projeto chamado ConectDoa. Aqui está todo o contexto:
+
+Recebi uma pasta do projeto contendo um front-end pronto, e minha missão é construir o back-end e criar o banco de dados. Sou leigo em desenvolvimento back-end e banco de dados, então estou aprendendo tudo passo a passo.
+
+Até o momento, eu e você estruturamos juntos o banco de dados no MySQL Workbench, criando as seguintes tabelas:
+
+- instituicao (id, nome, endereco, telefone, email)
+- doacao (id, id_instituicao, tipo, quantidade, data_doacao)
+- usuario (id, nome, email, senha)
+
+Os relacionamentos estão funcionando corretamente, e já fizemos testes inserindo dados e consultando com comandos SQL como SELECT, INSERT, SHOW TABLES e DESCRIBE.
+
+Aprendi como criar o banco, inserir dados, consultar tabelas e ver a estrutura delas.
+
+O próximo passo agora é começar o back-end, utilizando:
+- Node.js
+- Express
+- MySQL2
+- Cors
+
+A ideia é criar uma API com rotas que façam:
+- Listagem de instituições (GET)
+- Criação de instituições (POST)
+- E depois expandir para doações e usuários.
+
+Quero continuar exatamente desse ponto, com explicações simples, bem didáticas, como se eu não soubesse nada de back-end. Seguindo passo a passo comigo e explicando o que cada coisa faz.
+
+Continue de onde paramos.

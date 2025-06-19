@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ConectaDoa | Plataforma Solidária</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-pY2d7hCSczI1y+qaEvP3Z0eQOgo9DjK9aYw3hffbgy+4N5v8W2kVUL9nHkVOS0S0Yh/m6Ik9y3D6yAwJ9uM+g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fafafa;
+      background-image: url('https://www.transparenttextures.com/patterns/diagmonds-light.png');
+      background-repeat: repeat;
+      background-attachment: fixed;
+      background-position: center;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: rgba(230, 126, 34, 0.9);
+      padding: 1rem 2rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(230, 126, 34, 0.4);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 1.5rem;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    .conteudo h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #e67e22;
+    }
+
+    .frase-impacto {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    .tipos-doacao {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .tipos-doacao select {
+      padding: 0.8rem;
+      border: 2px solid #e67e22;
+      border-radius: 10px;
+      font-size: 1rem;
+      min-width: 200px;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      flex: 1 1 calc(25% - 1.5rem);
+      max-width: calc(25% - 1.5rem);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+    }
+
+    .card h2,
+    .card h3 {
+      color: #e67e22;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      margin-bottom: 0.3rem;
+    }
+
+    .link-entrar {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #e67e22;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    .descricao-projeto {
+      margin-top: 3rem;
+    }
+
+    footer {
+      background-color: rgba(230, 126, 34, 0.9);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-weight: 600;
+      box-shadow: 0 -2px 8px rgba(230, 126, 34, 0.4);
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-column a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .footer-social {
+      margin: 1rem 0;
+    }
+
+    .social-icon {
+      margin: 0 0.5rem;
+      font-size: 1.2rem;
+      color: white;
+    }
+
+    .footer-bottom {
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 1024px) {
+      .card {
+        flex: 1 1 calc(50% - 1.5rem);
+        max-width: calc(50% - 1.5rem);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .tipos-doacao {
+        flex-direction: column;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 tabindex="0" role="button" aria-label="Ir para página principal" onclick="goToPage('paginaPrincipal.html')" onkeypress="if(event.key==='Enter'){goToPage('paginaPrincipal.html')}">ConectaDoa</h1>
+    <nav>
+      <a href="paginaPrincipal.html" tabindex="0">Início</a>
+      <a href="painel.html" tabindex="0">voltar</a>
+      <a href="login.html" tabindex="0">Sair</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="conteudo">
+      <h2>Buscar Instituições</h2>
+      <p class="frase-impacto">Encontre, filtre e conecte-se com quem mais precisa 💛</p>
+
+      <div class="tipos-doacao filtros">
+        <select id="filtro-tipo">
+          <option>Tipo de doação</option>
+          <option>Alimentos</option>
+          <option>Financeiro</option>
+          <option>Roupas</option>
+        </select>
+        <select id="filtro-local">
+          <option>Localização</option>
+          <option>Rio de Janeiro</option>
+          <option>Espírito Santo</option>
+          <option>Belo Horizonte</option>
+          <option>São Paulo</option>
+        </select>
+        <select id="filtro-categoria">
+          <option>Categoria</option>
+          <option>Campanha de Mobilização</option>
+          <option>Associação</option>
+          <option>Igreja</option>
+          <option>ONG</option>
+        </select>
+      </div>
+
+      <div class="cards-container">
+        <div class="card" data-tipo="Financeiro" data-local="Rio de Janeiro" data-categoria="Campanha de Mobilização">
+          <img src="https://doacoes.criancaesperanca.unesco.org/static/img/criesp-BK-4.png" alt="Criança Esperança">
+          <h3>Criança Esperança</h3>
+          <p><strong>Cidade:</strong> Rio de Janeiro</p>
+          <p><strong>Tipo:</strong> Financeiro</p>
+          <p><strong>Categoria:</strong> Campanha de Mobilização</p>
+          <a class="link-entrar" href="https://doacoes.criancaesperanca.unesco.org/" target="_blank">Saiba mais</a>
+        </div>
+
+        <div class="card" data-tipo="Todos" data-local="Espírito Santo" data-categoria="Associação">
+          <img src="https://acacci.org.br/wp-content/uploads/2022/05/cropped-WhatsApp-Image-2023-03-03-at-09.53.29-1.jpeg" alt="ACACCI">
+          <h3>ACACCI</h3>
+          <p><strong>Cidade:</strong> Espírito Santo</p>
+          <p><strong>Tipo:</strong> Todos</p>
+          <p><strong>Categoria:</strong> Associação</p>
+          <a class="link-entrar" href="https://acacci.org.br/" target="_blank">Saiba mais</a>
+        </div>
+
+        <div class="card" data-tipo="Alimentos" data-local="Belo Horizonte" data-categoria="Igreja">
+          <img src="https://arquidiocesebh.org.br/wp-content/uploads/2024/05/logo-arquidiocese-belo-horizonte.svg" alt="Paróquia">
+          <h3>Paróquia de Todos os Santos</h3>
+          <p><strong>Cidade:</strong> Belo Horizonte</p>
+          <p><strong>Tipo:</strong> Alimentos</p>
+          <p><strong>Categoria:</strong> Igreja</p>
+          <a class="link-entrar" href="https://arquidiocesebh.org.br/noticias/paroquia-de-todos-os-santos-bairro-primeiro-de-maio-promove-semana-de-formacao-missionaria/" target="_blank">Saiba mais</a>
+        </div>
+
+        <div class="card" data-tipo="Roupas" data-local="São Paulo" data-categoria="ONG">
+          <img src="https://static.wixstatic.com/media/5e1ee4_e7455edc66c74522937933a9df253402~mv2.png/v1/fill/w_100,h_111,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Novo%20Escudo%20-%20%C3%8Dcone%20Wix.png" alt="Exército da Salvação">
+          <h3>Exército da Salvação</h3>
+          <p><strong>Cidade:</strong> São Paulo</p>
+          <p><strong>Tipo:</strong> Roupas</p>
+          <p><strong>Categoria:</strong> ONG</p>
+          <a class="link-entrar" href="https://www.exercitodesalvacao.org.br/" target="_blank">Saiba mais</a>
+        </div>
+      </div>
+
+      <div class="descricao-projeto">
+        <h2>Encontre uma causa para chamar de sua 💙</h2>
+        <p>Esta página conecta você com instituições que fazem a diferença todos os dias. ONG, associação, igreja ou campanha, todas compartilham um propósito: ajudar quem mais precisa.</p>
+        <p>Use os filtros acima para buscar por tipo de doação, localização e categoria. Ao selecionar uma organização, você poderá saber mais sobre o trabalho realizado.</p>
+        <p>Escolha apoiar uma causa que toque o seu coração. Sua doação pode transformar vidas. 💫</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <div class="footer-column">
+          <h3>Institucional</h3>
+          <ul>
+            <li><a href="#">Quem Somos</a></li>
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Termos de Uso</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Ajuda</h3>
+          <ul>
+            <li><a href="#">Suporte</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-social">
+        <a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+        <a class="social-icon" href="#"><i class="fab fa-instagram"></i></a>
+        <a class="social-icon" href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 ConectaDoa. Todos os direitos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const filtroTipo = document.getElementById('filtro-tipo');
+    const filtroLocal = document.getElementById('filtro-local');
+    const filtroCategoria = document.getElementById('filtro-categoria');
+    const cards = document.querySelectorAll('.card');
+
+    filtroTipo.addEventListener('change', aplicarFiltros);
+    filtroLocal.addEventListener('change', aplicarFiltros);
+    filtroCategoria.addEventListener('change', aplicarFiltros);
+
+    function aplicarFiltros() {
+      const tipo = filtroTipo.value;
+      const local = filtroLocal.value;
+      const categoria = filtroCategoria.value;
+
+      cards.forEach(card => {
+        const cardTipo = card.dataset.tipo;
+        const cardLocal = card.dataset.local;
+        const cardCategoria = card.dataset.categoria;
+
+        const matchTipo = (tipo === "Tipo de doação" || cardTipo === tipo || cardTipo === "Todos");
+        const matchLocal = (local === "Localização" || cardLocal === local);
+        const matchCategoria = (categoria === "Categoria" || cardCategoria === categoria);
+
+        if (matchTipo && matchLocal && matchCategoria) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>

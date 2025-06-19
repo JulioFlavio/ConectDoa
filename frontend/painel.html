@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ConectaDoa | Painel</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fafafa;
+      background-image: url('https://www.transparenttextures.com/patterns/diagmonds-light.png');
+      background-repeat: repeat;
+      background-attachment: fixed;
+      background-position: center;
+      background-size: auto;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: rgba(230, 126, 34, 0.9);
+      padding: 1rem 2rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(230, 126, 34, 0.4);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 1.5rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: #d35400;
+      outline: none;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    .profile-card {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      background-color: white;
+      padding: 1.5rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      margin-bottom: 3rem;
+    }
+
+    .profile-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 10px rgba(230,126,34,0.5);
+    }
+
+    .profile-card h3 {
+      font-size: 1.5rem;
+      color: #e67e22;
+      margin-bottom: 0.3rem;
+    }
+
+    .profile-card p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .content section {
+      margin-bottom: 3rem;
+    }
+
+    .content h2 {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+      color: #e67e22;
+    }
+
+    .content p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .actions button {
+      background-color: #e67e22;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 5px 12px rgba(230,126,34,0.3);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      flex: 1 1 200px;
+      position: relative;
+      overflow: hidden;
+      min-width: 180px;
+      text-align: center;
+    }
+
+    .actions button:hover,
+    .actions button:focus {
+      background-color: #d35400;
+      outline: 3px solid #f39c12;
+      outline-offset: 3px;
+      transform: translateY(-2px);
+    }
+
+    .feed h3 {
+      color: #e67e22;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    .feed ul {
+      list-style: disc inside;
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .feed ul li {
+      margin-bottom: 0.7rem;
+    }
+
+    footer {
+      background-color: rgba(230, 126, 34, 0.9);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-weight: 600;
+      box-shadow: 0 -2px 8px rgba(230, 126, 34, 0.4);
+    }
+
+    @media (max-width: 1024px) {
+      .actions {
+        justify-content: center;
+      }
+
+      .profile-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .actions button {
+        flex: 1 1 45%;
+        min-width: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .actions button {
+        flex: 1 1 100%;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 tabindex="0" role="button" aria-label="Ir para página principal" onclick="goToPage('paginaPrincipal.html')" onkeypress="if(event.key==='Enter'){goToPage('paginaPrincipal.html')}">ConectaDoa</h1>
+    <nav>
+      <a href="paginaPrincipal.html" tabindex="0">Início</a>
+      <a href="sobre.html" tabindex="0">Sobre</a>
+      <a href="login.html" tabindex="0">Sair</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="profile-card" aria-label="Informações do usuário">
+      <img src="https://avatars.githubusercontent.com/u/172922544?v=4" alt="Foto de perfil da usuária Maria Silva sorrindo" />
+      <div>
+        <h3>Maria Clara Maciel Muniz</h3>
+        <p>Obrigado por fazer parte do projeto ConectaDoa!</p>
+      </div>
+    </section>
+
+    <section class="content" aria-label="Conteúdo principal">
+      <section class="welcome">
+        <h2>Bem-vindo</h2>
+        <p>Você está logado com sucesso! Aqui você pode gerenciar suas ações solidárias e acompanhar seu progresso.</p>
+      </section>
+
+      <section class="actions" aria-label="Ações principais do usuário">
+        <button aria-label="Ver instituições cadastradas" onclick="goToPage('instituiçoes.html')">Instituições Cadastradas</button>
+        <button aria-label="Ver histórico de doações" onclick="goToPage('telaDeAlerta.html')">Configurações</button>
+        <button aria-label="Relatos e contas" onclick="goToPage('TelaRelatos.html')">Relatos de Empresas Parceiras</button>
+      </section>
+
+      <section class="feed" aria-label="Últimas doações e notícias">
+        <h3>Últimas doações e notícias</h3>
+        <ul>
+          <li>Doação de alimentos para a Casa de Acolhimento – 15/05/2025</li>
+          <li>Campanha de arrecadação para animais de rua – 10/05/2025</li>
+          <li>Evento de conscientização sobre reciclagem – 08/05/2025</li>
+          <li>Novas parcerias com ONGs locais anunciadas – 05/05/2025</li>
+          <li>Doação de roupas para comunidade carente – 02/05/2025</li>
+        </ul>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 ConectaDoa. Todos os direitos reservados.
+  </footer>
+
+  <script>
+    function goToPage(url) {
+      window.location.href = url;
+    }
+  </script>
+</body>
+</html>

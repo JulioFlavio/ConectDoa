@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ConectaDoa | Plataforma Solidária</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: url("https://media.istockphoto.com/id/2171791540/pt/foto/volunteers-arranging-items-for-donation-outdoors.jpg?s=2048x2048&w=is&k=20&c=Uo0D5yPVvKsKTx6Tgtyemb_4WN9Uw0--65WDNRfMO8c=") no-repeat center center fixed;
+      background-size: cover;
+      color: #4a4a4a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: rgba(230, 126, 34, 0.9); /* Laranja com 90% de opacidade */
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      color: white;
+      font-size: 2.4rem;
+      font-weight: 700;
+    }
+
+    header span {
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 2rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      gap: 2rem;
+    }
+
+    .conteudo {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .conteudo h2 {
+      font-size: 2.4rem;
+      color: #d35400;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .frase-impacto {
+      font-style: italic;
+      color: #7f8c8d;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .contador {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .tipos-doacao {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: #ffe8d6;
+      padding: 1.2rem 1rem;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 700;
+      color: #6b4226;
+      font-size: 1.1rem;
+      cursor: default;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+
+    .card:hover {
+      background: #fdd3a3;
+      transform: translateY(-5px);
+    }
+
+    .botoes {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .botoes button {
+      background-color: #e67e22;
+      color: white;
+      border: none;
+      padding: 0.9rem 1.2rem;
+      font-size: 1.15rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      justify-content: center;
+      font-weight: 600;
+      box-shadow: 0 4px 8px rgba(230, 126, 34, 0.4);
+      user-select: none;
+    }
+
+    .botoes button:hover {
+      background-color: #d35400;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(211, 84, 0, 0.6);
+    }
+
+    .link-entrar {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 1rem;
+      color: #2ecc71;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    .link-entrar strong {
+      font-weight: 700;
+    }
+
+    .link-entrar:hover {
+      color: #27ae60;
+      text-decoration: underline;
+    }
+
+    .descricao-projeto {
+      background: #fffaf3;
+      padding: 1.8rem 2rem;
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.5;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .descricao-projeto h3 {
+      color: #e67e22;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 1.5rem 1rem;
+        max-width: 100%;
+      }
+
+      .conteudo {
+        padding: 1.5rem 1.8rem;
+      }
+    }
+    .site-footer {
+  background-color: rgba(230, 126, 34, 0.9); /* Laranja com 90% de opacidade */
+  color: white;
+  padding: 2rem 2rem;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.footer-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-column h3 {
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  color: #fff;
+  border-bottom: 2px solid #fff3e0;
+  padding-bottom: 0.3rem;
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-column ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover,
+.footer-column ul li a:focus {
+  color: #fdd3a3; /* tom laranja claro */
+  outline: none;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.social-icon {
+  color: white;
+  font-size: 1.6rem;
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.social-icon:hover,
+.social-icon:focus {
+  color: #fdd3a3;
+  outline: none;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #fff3e0;
+  font-weight: 500;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ConectaDoa</h1>
+    <span>Solidariedade que Conecta</span>
+  </header>
+
+  <main>
+    <section class="conteudo" aria-labelledby="titulo-movimento">
+      <h2 id="titulo-movimento">Junte-se ao movimento da solidariedade!</h2>
+      <p class="frase-impacto">
+        "A solidariedade transforma o mundo, um gesto de cada vez."
+      </p>
+      <p class="contador" aria-live="polite">
+        Quantidade de pessoas que acessaram hoje <span id="contador">0</span>
+      </p>
+
+      <div class="tipos-doacao" role="list" aria-label="Tipos de doação">
+        <div class="card" role="listitem" tabindex="0">🧥 Roupas</div>
+        <div class="card" role="listitem" tabindex="0">🥫 Alimentos</div>
+        <div class="card" role="listitem" tabindex="0">🛋️ Móveis</div>
+        <div class="card" role="listitem" tabindex="0">📚 Escolar</div>
+        <div class="card" role="listitem" tabindex="0">📦 Diversos</div>
+      </div>
+
+      <div class="botoes">
+        <button onclick="window.location.href='criar-conta.html'">🤝 Quero Ajudar</button>
+        <button id="btnReceber" aria-label="Botão para solicitar ajuda">📥 Preciso Receber</button>
+        <a href="login.html" class="link-entrar">Já tem uma conta? <strong>Entrar</strong></a>
+      </div>
+
+      <div class="descricao-projeto" aria-labelledby="sobre-plataforma">
+        <h3 id="sobre-plataforma">Sobre a plataforma</h3>
+        <p>
+          ConectaDoa conecta doadores e instituições em uma rede de generosidade. Aqui, qualquer pessoa pode doar ou receber apoio com segurança, transparência e simplicidade.  
+          Nosso objetivo é fomentar uma cultura de solidariedade ativa, onde cada contribuição, por menor que seja, faz a diferença na vida de alguém. A plataforma promove a inclusão social, facilitando o acesso a recursos essenciais para famílias e comunidades em situação de vulnerabilidade.  
+          Além disso, utilizamos tecnologia de ponta para garantir que todas as doações sejam rastreáveis e que os beneficiários recebam ajuda de forma justa e rápida. Com a ConectaDoa, incentivamos a construção de laços comunitários fortes, estimulando o espírito colaborativo e o engajamento social em prol de um mundo mais humano e solidário.
+        </p>
+      </div>
+    </section>
+  </main>
+   <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-links">
+      <div class="footer-column">
+        <h3>Sobre Nós</h3>
+        <ul>
+          <li><a href="#">Nossa Missão</a></li>
+          <li><a href="#">Equipe</a></li>
+          <li><a href="#">Parceiros</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Ajuda</h3>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Contato</a></li>
+          <li><a href="#">Guia de Uso</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="#">Termos de Serviço</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="#">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-social">
+      <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2023 Relatos e Contas. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    const contador = document.getElementById("contador");
+    let total = 0;
+    setInterval(() => {
+      total += Math.floor(Math.random() * 3);
+      contador.textContent = total;
+    }, 3000);
+
+    const btnReceber = document.getElementById('btnReceber');
+    btnReceber.addEventListener('click', () => {
+      window.location.href = 'criar-conta.html';
+    });
+    btnReceber.addEventListener('mouseover', () => {
+      btnReceber.style.backgroundColor = '#d35400';
+    });
+    btnReceber.addEventListener('mouseout', () => {
+      btnReceber.style.backgroundColor = '#e67e22';
+    });
+  </script>
+</body>
+</html>
