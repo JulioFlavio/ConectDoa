@@ -309,7 +309,7 @@ No arquivo index.js, adicione:
 ## ✅ Testes com o Postman
 ### 🔹 GET /doacoes
 Retorna uma lista de doações com o nome da instituição.
-![GET com Postman](image-1.png)
+![GET com Postman](docs/images/image-1.png)
 
 ### 🔹 POST /doacoes
 Body JSON de exemplo:

@@ -1,0 +1,15 @@
+Estou desenvolvendo um projeto chamado ConectDoa.
+
+Recebi um front-end pronto, e minha missão é criar o back-end em Node.js e o banco em MySQL.  
+Sou iniciante e estou aprendendo passo a passo. Já criei as tabelas no MySQL Workbench (instituicao, doacao, usuario) com relacionamentos, e testei com SELECT, INSERT, SHOW TABLES e DESCRIBE.
+
+Já conectei o Node.js ao banco usando MySQL2, e configurei um servidor com Express e Cors.
+
+Tenho rotas GET e POST funcionando para `/instituicoes`, `/doacoes` e `/usuarios`.  
+As rotas usam arquivos separados na pasta `routes/`, importadas com `require` e `app.use()` no `index.js`.
+
+Já consigo cadastrar e listar tudo pelo Postman.
+
+Agora quero continuar o projeto daqui. Antes de continuar, gostaria de saber:
+
+**Deseja que eu te explique tudo o que já foi feito até agora – como fizemos, por que fizemos e onde paramos – antes de prosseguir?**
