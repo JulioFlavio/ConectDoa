@@ -110,12 +110,11 @@
       flex-shrink: 0;
     }
   </style>
-  </style>
 </head>
 <body>
   <div class="form-container">
     <h2>Criar Conta</h2>
-    <form id="formCadastro" action="/cadastrar" method="POST" novalidate>
+    <form id="formCadastro" action="../backend/routes/usuarios.js/cadastro" method="POST" novalidate>
 
       <label for="tipoPessoa">Tipo de cadastro:</label>
       <select name="tipoPessoa" id="tipoPessoa" required>
@@ -125,9 +124,9 @@
 
       <!-- Campos para Pessoa Física -->
       <div id="camposPF">
-        <input type="text" name="nome" placeholder="Nome completo" required />
-        <input type="text" name="cpf" placeholder="CPF (somente números)" pattern="\d{11}" title="Digite 11 números sem pontos ou traços" required />
-        <input type="number" name="idade" placeholder="Idade" min="1" max="120" required />
+        <input id="nomeCompleto" type="text" name="nome" placeholder="Nome completo" required />
+        <input id="CPF" type="text" name="cpf" placeholder="CPF (somente números)" pattern="\d{11}" title="Digite 11 números sem pontos ou traços" required />
+        <input id="idade" type="number" name="idade" placeholder="Idade" min="1" max="120" required />
       </div>
 
       <!-- Campos para Pessoa Jurídica (escondidos por padrão) -->
@@ -137,64 +136,16 @@
         <input type="text" name="responsavel" placeholder="Nome do responsável" />
       </div>
 
-      <input type="text" name="usuario" placeholder="Nome de usuário" required />
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="password" name="senha" placeholder="Senha (mínimo 6 caracteres)" minlength="6" required />
-      <input type="password" name="confirmarSenha" placeholder="Confirmar senha" minlength="6" required />
+      <input id="usuario" type="text" name="usuario" placeholder="Nome de usuário" required />
+      <input id="email" type="email" name="email" placeholder="Email" required />
+      <input id="senha" type="password" name="senha" placeholder="Senha (mínimo 6 caracteres)" minlength="6" required />
+      <input id="confirmarSenha" type="password" name="confirmarSenha" placeholder="Confirmar senha" minlength="6" required />
       <button type="submit">Cadastrar</button>
     </form>
 
     <button class="btn-voltar" onclick="window.history.back()">← Voltar</button>
   </div>
-  
 
-  <script>
-    const form = document.getElementById('formCadastro');
-    const tipoPessoa = document.getElementById('tipoPessoa');
-    const camposPF = document.getElementById('camposPF');
-    const camposPJ = document.getElementById('camposPJ');
-
-    // Função para alternar campos
-    function alternarCampos() {
-      if(tipoPessoa.value === 'cpf') {
-        camposPF.style.display = 'block';
-        camposPJ.style.display = 'none';
-
-        // Ajustar obrigatoriedade dos campos
-        camposPF.querySelectorAll('input').forEach(i => i.required = true);
-        camposPJ.querySelectorAll('input').forEach(i => i.required = false);
-      } else {
-        camposPF.style.display = 'none';
-        camposPJ.style.display = 'block';
-
-        camposPF.querySelectorAll('input').forEach(i => i.required = false);
-        camposPJ.querySelectorAll('input').forEach(i => i.required = true);
-      }
-    }
-
-    // Executar ao mudar o select
-    tipoPessoa.addEventListener('change', alternarCampos);
-
-    // Inicializar
-    alternarCampos();
-
-    // Validação senha
-    form.addEventListener('submit', function(event) {
-      const senha = form.senha.value;
-      const confirmarSenha = form.confirmarSenha.value;
-
-      if (senha !== confirmarSenha) {
-        alert('As senhas não coincidem!');
-        event.preventDefault();
-        return false;
-      }
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        event.preventDefault();
-        return false;
-      }
-    });
-  </script>
+  <script src="../assets/scripts/cadastro.js"></script>
 </body>
 </html>
