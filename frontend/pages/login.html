@@ -164,16 +164,16 @@
       <span></span>
     </div>
     <nav id="navbar">
-      <a href="paginaPrincipal.html">Início</a>
+      <a href="index.html">Início</a>
       <a href="sobre.html">Sobre</a>
     </nav>
   </header>
 
   <div class="login-container">
     <h2>Login Solidário</h2>
-    <form action="painel.html">
-      <input type="email" placeholder="Email" required />
-      <input type="password" placeholder="Senha" required />
+    <form id="formLogin">
+      <input name="email" id="emailLogin" type="email" placeholder="Email" required />
+      <input name="senha" id="senhaLogin" type="password" placeholder="Senha" required />
       <button type="submit">Entrar</button>
     </form>
     <a class="link-entrar" href="criar-conta.html">Não tem uma conta? <strong>Cadastre-se</strong></a>
@@ -188,5 +188,7 @@
       nav.classList.toggle("active");
     }
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../assets/scripts/login.js"></script>
 </body>
 </html>

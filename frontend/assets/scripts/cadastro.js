@@ -1,4 +1,4 @@
- const form = document.getElementById('formCadastro');
+const form = document.getElementById('formCadastro');
 const tipoPessoa = document.getElementById('tipoPessoa');
 const camposPF = document.getElementById('camposPF');
 const camposPJ = document.getElementById('camposPJ');
@@ -48,38 +48,37 @@ form.addEventListener('submit', function(event) {
 /////////////////////////////////////////////////////
 
 
+document.getElementById('formCadastro').addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('formCadastro');
+  const dados = {
+    nome: e.target.nome.value,
+    email: e.target.email.value,
+    senha: e.target.senha.value,
+    nomeUsuario: e.target.nomeUsuario.value,
+    idade: parseInt(e.target.idade.value),
+    cpf: e.target.CPF.value
+  };
 
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+  const resposta = await fetch('http://localhost:3000/usuarios/cadastro', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(dados)
+  });
 
-      const nomeCompleto = document.getElementById('nome').value;
-      const cpf = document.getElementById('CPF').value;
-      const idade = document.getElementById('idade').value;
-      const usuario = document.getElementById('usuario').value;
-      const email = document.getElementById('email').value;
-      const senha = document.getElementById('senha').value;
-      const confirmarSenha = document.getElementById('confirmarSenha').value;
-
-      try {
-        const response = await fetch('http://localhost:3000/usuarios', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nome, email, senha })
-        });
-
-        if (response.ok) {
-          alert('Usuário cadastrado com sucesso!');
-          form.reset();
-        } else {
-          alert('Erro ao cadastrar usuário.');
-        }
-      } catch (error) {
-        alert('Erro na requisição: ' + error.message);
-      }
+  const resultado = await resposta.json();
+  console.log(resultado);
+  if (resultado.message == "Usuário cadastrado com sucesso!"){
+    Swal.fire({
+      title: "Usuário cadastrado!",
+      html: `Tente fazer <a href="login.html">login</a>.`,
+      icon: "success"
+    }).then ((result) => {location.reload()})
+  } else {
+    Swal.fire({
+      title: "Erro!",
+      text: "Ocorreu um erro ao cadastrar o usuário, tente novamente.",
+      icon: "error"
     });
   }
 });

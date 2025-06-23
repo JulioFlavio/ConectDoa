@@ -114,7 +114,7 @@
 <body>
   <div class="form-container">
     <h2>Criar Conta</h2>
-    <form id="formCadastro" action="../backend/routes/usuarios.js/cadastro" method="POST" novalidate>
+    <form id="formCadastro" action="cadastroUsuario()" novalidate>
 
       <label for="tipoPessoa">Tipo de cadastro:</label>
       <select name="tipoPessoa" id="tipoPessoa" required>
@@ -136,7 +136,7 @@
         <input type="text" name="responsavel" placeholder="Nome do responsável" />
       </div>
 
-      <input id="usuario" type="text" name="usuario" placeholder="Nome de usuário" required />
+      <input id="usuario" type="text" name="nomeUsuario" placeholder="Nome de usuário" required />
       <input id="email" type="email" name="email" placeholder="Email" required />
       <input id="senha" type="password" name="senha" placeholder="Senha (mínimo 6 caracteres)" minlength="6" required />
       <input id="confirmarSenha" type="password" name="confirmarSenha" placeholder="Confirmar senha" minlength="6" required />
@@ -146,6 +146,7 @@
     <button class="btn-voltar" onclick="window.history.back()">← Voltar</button>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../assets/scripts/cadastro.js"></script>
 </body>
 </html>

@@ -40,6 +40,7 @@ const doacoesRoutes = require('./routes/doacoes');
 const usuariosRoutes = require('./routes/usuarios');
 
 // Usando as rotas importadas aqui
-app.use('/instituicao', instituicaoRoutes);
+app.use('/instituicoes', instituicaoRoutes);
 app.use('/doacoes', doacoesRoutes);
 app.use('/usuarios', usuariosRoutes);
+// localhost:3000/rota
