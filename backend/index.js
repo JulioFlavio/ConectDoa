@@ -12,6 +12,7 @@ const app = express();
 
 app.use(cors());            // Libera acesso de outros locais
 app.use(express.json());    // Faz a API entender JSON no corpo das requisições (o JSON que vai vir do front-end)
+app.use(express.urlencoded({ extended: true }));
 
 
 // Rota inicial (só pra testar se o servidor está no ar)

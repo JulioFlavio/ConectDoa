@@ -565,9 +565,9 @@
         </button>
         <div class="user-profile">
           <div class="profile-img">
-            <img src="https://avatars.githubusercontent.com/u/172922544?v=4" alt="Foto de perfil">
+            <img src="../assets/images/images.jpeg" alt="Foto de perfil">
           </div>
-          <div class="username">Maria Clara Maciel Muniz</div>
+          <div id="nome" class="username">Maria Clara Maciel Muniz</div>
         </div>
       </div>
       <button class="logout-btn" onclick="logout()">Sair</button>
@@ -886,7 +886,8 @@
         // Funções da navbar
         window.logout = function () {
           alert("Você será deslogado.");
-          // window.location.href = "login.html";
+          localStorage.clear();
+          window.location.href = "login.html";
         };
 
         window.showMainPage = function () {
@@ -895,5 +896,6 @@
         };
       });
     </script>
+    <script src="../assets/scripts/alerta.js"></script>
   </body>
 </html>

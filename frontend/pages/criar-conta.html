@@ -131,12 +131,15 @@
 
       <!-- Campos para Pessoa Jurídica (escondidos por padrão) -->
       <div id="camposPJ" style="display:none;">
-        <input type="text" name="nomeEmpresa" placeholder="Nome da empresa" />
-        <input type="text" name="cnpj" placeholder="CNPJ (somente números)" pattern="\d{14}" title="Digite 14 números sem pontos ou traços" />
+        <input id="nomeEmpresa" type="text" name="nomeEmpresa" placeholder="Nome da empresa" />
+        <input id="CNPJ" type="text" name="cnpj" placeholder="CNPJ (somente números)" pattern="\d{14}" title="Digite 14 números sem pontos ou traços" />
         <input type="text" name="responsavel" placeholder="Nome do responsável" />
+        <input id="telefone" type="tel" name="telefone" placeholder="Telefone (+55 31 4002-8922)" required>
+        <input id="descricao" type="text" name="descricao" placeholder="Tipo de Empresa" required>
       </div>
 
       <input id="usuario" type="text" name="nomeUsuario" placeholder="Nome de usuário" required />
+      <input id="endereco" type="text" name="endereco" placeholder="Logradouro (Ex: Rua das Tanjerinas, 300)" required>
       <input id="email" type="email" name="email" placeholder="Email" required />
       <input id="senha" type="password" name="senha" placeholder="Senha (mínimo 6 caracteres)" minlength="6" required />
       <input id="confirmarSenha" type="password" name="confirmarSenha" placeholder="Confirmar senha" minlength="6" required />

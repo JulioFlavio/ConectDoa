@@ -4,8 +4,8 @@ document.getElementById("formLogin").addEventListener('submit', async (e) => {
   const senha = document.getElementById("senhaLogin").value
 
   const dados = {
-    email: email,
-    senha: senha
+    Email: email,
+    Senha: senha
   };
 
   // console.log(dados)
