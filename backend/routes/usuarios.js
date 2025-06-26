@@ -4,10 +4,10 @@ const db = require('../database/connection');
 
 // POST - Cadastro de usuário
 router.post('/cadastro', (req, res) => {
-  const { nome, email, senha, nomeUsuario, idade, cpf } = req.body;
+  const {CPF, Nome, Idade, NomeUsuario, Email, Senha, Endereco} = req.body;
 
-  const sql = 'INSERT INTO usuarios (nome, email, senha, nomeUsuario, idade, cpf) VALUES (?, ?, ?, ?, ?, ?)';
-  const values = [nome, email, senha, nomeUsuario, idade, cpf];
+  const sql = 'INSERT INTO Usuarios (CPF, Nome, Idade, NomeUsuario, Email, Senha, Endereco) VALUES (?, ?, ?, ?, ?, ?, ?)';
+  const values = [CPF, Nome, Idade, NomeUsuario, Email, Senha, Endereco];
 
   db.query(sql, values, (err, result) => {
     if (err) {
@@ -21,10 +21,10 @@ router.post('/cadastro', (req, res) => {
 
 // POST - Login de usuário
 router.post('/login', (req, res) => {
-  const { email, senha } = req.body;
+  const { Email, Senha } = req.body;
 
-  const sql = 'SELECT * FROM usuarios WHERE email = ? AND senha = ?';
-  const values = [email, senha];
+  const sql = 'SELECT * FROM Usuarios WHERE Email = ? AND Senha = ?';
+  const values = [Email, Senha];
 
   db.query(sql, values, (err, results) => {
     if (err) {

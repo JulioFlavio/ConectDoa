@@ -5,9 +5,12 @@ const db = require('../database/connection');
 // GET - Listar todas as doações
 router.get('/', (req, res) => {
   const sql = `
-    SELECT d.id, d.tipo, d.quantidade, d.data_doacao, i.nome AS nome_instituicao
-    FROM doacao d
-    JOIN instituicao i ON d.id_instituicao = i.id
+    SELECT d.IDDoacao, d.DataDoacao, d.Descricao, d.Status,
+           u.Nome AS nome_usuario,
+           e.Nome AS nome_empresa
+    FROM Doacoes d
+    LEFT JOIN Usuarios u ON d.fk_Usuarios_IDUsuario = u.IDUsuario
+    LEFT JOIN Empresas e ON d.fk_Empresas_IDEmpresa = e.IDEmpresa
   `;
 
   db.query(sql, (err, results) => {
@@ -22,17 +25,20 @@ router.get('/', (req, res) => {
 
 // POST - Criar nova doação
 router.post('/', (req, res) => {
-  const { id_instituicao, tipo, quantidade, data_doacao } = req.body;
+  const { IDDoacao, DataDoacao, Descricao, Status, fk_Empresas_IDEmpresa, fk_Usuarios_IDUsuario } = req.body;
 
-  const sql = 'INSERT INTO doacao (id_instituicao, tipo, quantidade, data_doacao) VALUES (?, ?, ?, ?)';
-  const values = [id_instituicao, tipo, quantidade, data_doacao];
+  const sql = `
+    INSERT INTO Doacoes (IDDoacao, DataDoacao, Descricao, Status, fk_Empresas_IDEmpresa, fk_Usuarios_IDUsuario)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `;
+  const values = [IDDoacao, DataDoacao, Descricao, Status, fk_Empresas_IDEmpresa, fk_Usuarios_IDUsuario];
 
   db.query(sql, values, (err, result) => {
     if (err) {
       console.error('Erro ao inserir doação:', err);
       res.status(500).json({ error: 'Erro ao inserir doação' });
     } else {
-      res.status(201).json({ message: 'Doação cadastrada com sucesso!', id: result.insertId });
+      res.status(201).json({ message: 'Doação registrada com sucesso!', doacao: result[0] });
     }
   });
 });

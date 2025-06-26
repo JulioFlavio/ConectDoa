@@ -35,12 +35,14 @@ app.listen(PORT, () => {
 
 
 // Importando todas as rotas aqui
-const instituicaoRoutes = require('./routes/instituicoes');
+const empresasRoutes = require('./routes/empresas');
 const doacoesRoutes = require('./routes/doacoes');
 const usuariosRoutes = require('./routes/usuarios');
+const administradorRoutes = require('./routes/administrador');
 
 // Usando as rotas importadas aqui
-app.use('/instituicoes', instituicaoRoutes);
+app.use('/empresas', empresasRoutes);
 app.use('/doacoes', doacoesRoutes);
 app.use('/usuarios', usuariosRoutes);
+app.use('/admin', administradorRoutes);
 // localhost:3000/rota
