@@ -9,7 +9,7 @@ const mysql = require('mysql2');
 const connection = mysql.createConnection({
     host: 'localhost',     // O servidor do banco (localhost = seu computador)
     user: 'root',          // Usuário do MySQL (geralmente é 'root')
-    password: 'Jj300804**',          // Sua senha do banco 
+    password: '',          // Sua senha do banco 
     database: 'ConectDoa'  // O nome do banco que você criou
 });
 
